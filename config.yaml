@@ -1,0 +1,38 @@
+project:
+  name: Predictive_Maintenance_v1
+  author: Swara Patil
+
+data:
+  raw_path: data/raw/ai4i2020.csv
+  processed_dir: data/processed/
+  target_column: Machine failure
+  production_dir: data/production/
+versions:
+  raw: v1_raw.csv
+  cleaned: v2_cleaned.csv
+  train: v3_train.csv
+  test: v3_test.csv
+  drift: day2_drift.csv
+
+split:
+  train_size: 0.7
+  random_state: 42
+
+model:
+  algorithm: RandomForest
+  n_estimators: 100
+  max_depth: 10
+  random_state: 42
+
+deployment:
+  model_dir: models/
+  model_name: model_v3.pkl
+  metadata_name: metadata.json
+  metadata_log_name: model_metadata.log
+  deployment_log: deployment_log.csv
+  port: 5000
+monitoring:
+  api_log: api_logs.csv
+  monitor_log: monitor_log.csv
+  drift_threshold: 0.05
+  seconds: 60
